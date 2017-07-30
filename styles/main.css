@@ -100,10 +100,20 @@ html {
      .column.half { width: 50%; }
      .column.third { width: 33.3%; }
      .column.fourth { width: 25%; }
-     .column.flow-opposite { float: right; }  
+     .column.flow-opposite { float: right; }
  }
 
  /* Large screens (1024px) */
     @media (min-width: 1024px) {
        html { font-size: 120%; }
  }
+
+ .clearfix::before,
+.clearfix::after {
+   content: " ";
+   display: table;
+}
+
+.clearfix::after {
+   clear: both;
+}
