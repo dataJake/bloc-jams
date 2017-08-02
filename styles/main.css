@@ -54,13 +54,16 @@ html {
      letter-spacing: 0.05rem;
      font-weight: 700;
      text-transform: uppercase;
-     /* #4 */
      text-decoration: none;
      cursor: pointer;
  }
 
  .links-container .navbar-link:hover {
      color: rgb(233,50,117);
+ }
+
+ .links-container .navbar-link:active {
+     background-color: white;
  }
 
  .hero-content {
@@ -116,7 +119,11 @@ html {
    .container {
     margin: 0 auto;
     max-width: 64rem;
-}
+   }
+
+   .container.narrow {
+    max-width: 56rem;
+   }
 
 
  /* Medium and small screens (640px) */
