@@ -28,6 +28,21 @@ var albumMarconi = {
      ]
  };
 
+ var albumFran = {
+     title: 'We Are Us',
+     artist: 'Frances Charlotte',
+     label: 'All In The Family',
+     year: '2015',
+     albumArtUrl: 'assets/images/album_covers/IMG_4088.jpg',
+     songs: [
+         { title: 'Breezy Trees', duration: '8:58' },
+         { title: 'Cheddar Bunnies', duration: '24:00:00' },
+         { title: 'I\'m Back!', duration: '0:10' },
+         { title: 'Artie', duration: '10:00' },
+         { title: 'Dance With Me', duration: '3:25' },
+     ]
+ };
+
  var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -40,6 +55,13 @@ var albumMarconi = {
      return template;
  };
 
+ //set variables for DOM elements (global scope)
+ var albumTitle = document.getElementsByClassName('album-view-title')[0];
+ var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+ var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+ var albumImage = document.getElementsByClassName('album-cover-art')[0];
+ var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+
  var setCurrentAlbum = function(album) {
      // #1
      var albumTitle = document.getElementsByClassName('album-view-title')[0];
@@ -47,7 +69,6 @@ var albumMarconi = {
      var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
      var albumImage = document.getElementsByClassName('album-cover-art')[0];
      var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
-     debugger;
 
      // #2
      albumTitle.firstChild.nodeValue = album.title;
@@ -63,7 +84,18 @@ var albumMarconi = {
          albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
      }
  };
-
+ //set the album to display on page load
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
+
+     var allAlbums = [albumPicasso, albumMarconi, albumFran];
+     var index = 1;
+     //cycle to next album on click
+     albumImage.addEventListener("click", function(event) {
+         setCurrentAlbum(allAlbums[index]);
+         index++;
+         if (index === allAlbums.length){
+             index = 0;
+         }
+     });
  };
