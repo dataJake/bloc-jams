@@ -5,7 +5,7 @@ var setSong = function(songNumber) {
     currentlyPlayingSongNumber = parseInt(songNumber);
     currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
     currentSoundFile = new buzz.sound(currentSongFromAlbum.audioUrl, {
-         formats: [ 'wav', 'mp3' ],
+         formats: [ 'mp3' ],
          preload: true
      });
 
