@@ -168,14 +168,15 @@ var previousSong = function() {
 };
 
 var togglePlayFromPlayerBar = function() {
+    var $thisSongNumberCell = getSongNumberCell(currentlyPlayingSongNumber);
     if (currentSoundFile.isPaused()) {
-        $(this).html(pauseButtonTemplate);
         $('.main-controls .play-pause').html(playerBarPauseButton);
         currentSoundFile.play();
+        $thisSongNumberCell.html(pauseButtonTemplate);
     } else {
-        $(this).html(playButtonTemplate);
         $('.main-controls .play-pause').html(playerBarPlayButton);
         currentSoundFile.pause();
+        $thisSongNumberCell.html(playButtonTemplate);
     }
 };
 
