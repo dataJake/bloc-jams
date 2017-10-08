@@ -50,9 +50,9 @@ var albumData = {
      year: '2006',
      albumArtUrl: 'assets/images/album_covers/WinterPrison.jpg',
      songs: [
-         { title: 'Fireflies', duration: '4:55', audioUrl: 'assets/music/Fireflies' },
-         { title: 'Dead Languages', duration: '7:25', audioUrl: 'assets/music/DeadLanguages' },
-         { title: 'Kingdoms Will Fall', duration: '5:24', audioUrl: 'assets/music/KingdomsWillFall' },
-         { title: 'Line By Line', duration: '5:36', audioUrl: 'assets/music/LineByLine' },
+         { title: 'Fireflies', duration: 295, audioUrl: 'assets/music/Fireflies' },
+         { title: 'Dead Languages', duration: 445, audioUrl: 'assets/music/DeadLanguages' },
+         { title: 'Kingdoms Will Fall', duration: 324, audioUrl: 'assets/music/KingdomsWillFall' },
+         { title: 'Line By Line', duration: 336, audioUrl: 'assets/music/LineByLine' },
      ]
 };
