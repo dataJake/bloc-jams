@@ -33,7 +33,7 @@ var createSongRow = function(songNumber, songName, songLength) {
         '<tr class="album-view-song-item">'
       + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
       + '  <td class="song-item-title">' + songName + '</td>'
-      + '  <td class="song-item-duration">' + songLength + '</td>'
+      + '  <td class="song-item-duration">' + filterTimeCode(songLength) + '</td>'
       + '</tr>'
       ;
 
@@ -133,9 +133,15 @@ var updateSeekBarWhileSongPlays = function() {
             var seekBarFillRatio = this.getTime() / this.getDuration();
             var $seekBar = $('.seek-control .seek-bar');
 
+            setCurrentTimeInPlayerBar(this.getTime());
+
             updateSeekPercentage($seekBar, seekBarFillRatio);
         });
     }
+};
+
+var setCurrentTimeInPlayerBar = function(currentTime) {
+  $('.seek-control .current-time').text(filterTimeCode(currentTime));
 };
 
 var updateSeekPercentage = function($seekBar, seekBarFillRatio) {
@@ -178,7 +184,7 @@ var setupSeekBars = function() {
           if ($seekBar.parent().attr('class') == 'seek-control') {
               seek(seekBarFillRatio * currentSoundFile.getDuration());
           } else {
-              setVolume(seekBarFillRatio);
+              setVolume(seekBarFillRatio * 100);
           }
 
           updateSeekPercentage($seekBar, seekBarFillRatio);
@@ -201,6 +207,27 @@ var updatePlayerBarSong = function() {
     $('.currently-playing .artist-name').text(currentAlbum.artist);
     $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + ' - ' + currentAlbum.artist);
     $('.main-controls .play-pause').html(playerBarPauseButton);
+    setTotalTimeInPlayerBar(currentSongFromAlbum.duration);
+};
+
+var setTotalTimeInPlayerBar = function(totalTime) {
+  $('.seek-control .total-time').text(filterTimeCode(totalTime));
+};
+
+
+var filterTimeCode = function(timeInSeconds) {
+  var totalSeconds = parseFloat(timeInSeconds);
+  var seconds = Math.floor(totalSeconds % 60);
+  var minutes = Math.floor(totalSeconds / 60);
+  if (minutes === 0) {
+    minutes = '0';
+  }
+  if (seconds === 0) {
+    seconds = '00';
+  } else if (seconds < 10) {
+    seconds = '0' + seconds;
+  }
+  return minutes + ':' + seconds;
 };
 
 var nextSong = function() {
@@ -279,6 +306,7 @@ var currentVolume = 80;
 var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
 var $playPauseButton = $('.main-controls .play-pause');
+
 
 //set the album to display on page load
 $(document).ready(function() {
